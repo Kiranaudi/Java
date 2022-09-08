@@ -1,5 +1,5 @@
 import java.sql.Connection;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class DBOperations {
 				+ c.getVersion() + ")";
 		try {
 			Statement statement = null;
-			ResultSet resultset = null;
+			//ResultSet resultset = null;
 			statement = connection.createStatement();
 			result = statement.executeUpdate(query);
 		} catch (SQLException e) {
@@ -30,15 +30,29 @@ public class DBOperations {
 	}
 
 	public static void main(String[] args) {
-		DBOperations d = new DBOperations();
+	//	DBOperations d = new DBOperations();
 		Scanner s = new Scanner(System.in);
 		Cars c = new Cars();
 		System.out.println("enter car name");
-		c.setName(s.next());
-		c.setName(s.next());
-		c.setName(s.next());
+		for (int i = 0; i < 4; i++) {
+			c.setName(s.next());
+		}
+		System.out.println("enter car price");
+		for (int i = 0; i < 4; i++) {
+			c.setPrice(s.nextDouble());
+		}
+		System.out.println("enter car model");
+		for (int i = 0; i < 4; i++) {
+			c.setModel(s.next());
+		}
+		System.out.println("enter car version");
+		for (int i = 0; i < 4; i++) {
+			c.setVersion(s.nextInt());
+		}
+
 
 		insertData(c);
+		s.close();
 	}
 
 }

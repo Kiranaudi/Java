@@ -14,7 +14,8 @@ public class DBOperations {
 	}
 
 	public static int insertData(Cars c) {
-		int result = 0;
+		
+		int result =0;
 		String query = "insert into cars values('" + c.getName() + "'," + c.getPrice() + ",'" + c.getModel() + "',"
 				+ c.getVersion() + ")";
 		try {
@@ -32,24 +33,16 @@ public class DBOperations {
 		DBOperations d = new DBOperations();
 		Scanner s = new Scanner(System.in);
 		Cars c = new Cars();
-		System.out.println("enter car name");
+		System.out.println("enter car name,price,model,version");
 		for (int i = 0; i < 4; i++) {
 			c.setName(s.next());
-		}
-		System.out.println("enter car price");
-		for (int i = 0; i < 4; i++) {
 			c.setPrice(s.nextDouble());
-		}
-		System.out.println("enter car model");
-		for (int i = 0; i < 4; i++) {
 			c.setModel(s.next());
-		}
-		System.out.println("enter car version");
-		for (int i = 0; i < 4; i++) {
 			c.setVersion(s.nextInt());
+			System.out.println("\n");
+			insertData(c);
 		}
 
-		insertData(c);
 		s.close();
 	}
 

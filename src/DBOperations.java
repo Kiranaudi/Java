@@ -1,12 +1,13 @@
 import java.sql.Connection;
-//import java.sql.ResultSet;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
 public class DBOperations {
 	static Connection connection;
-
+	static Statement statement ;
+	static ResultSet resultset ;
 	public DBOperations() {
 		connection = MySqlConnection.getInstance();
 
@@ -17,8 +18,6 @@ public class DBOperations {
 		String query = "insert into cars values('" + c.getName() + "'," + c.getPrice() + ",'" + c.getModel() + "',"
 				+ c.getVersion() + ")";
 		try {
-			Statement statement = null;
-			//ResultSet resultset = null;
 			statement = connection.createStatement();
 			result = statement.executeUpdate(query);
 		} catch (SQLException e) {
@@ -30,7 +29,7 @@ public class DBOperations {
 	}
 
 	public static void main(String[] args) {
-	//	DBOperations d = new DBOperations();
+		DBOperations d = new DBOperations();
 		Scanner s = new Scanner(System.in);
 		Cars c = new Cars();
 		System.out.println("enter car name");
@@ -49,7 +48,6 @@ public class DBOperations {
 		for (int i = 0; i < 4; i++) {
 			c.setVersion(s.nextInt());
 		}
-
 
 		insertData(c);
 		s.close();

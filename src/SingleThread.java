@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class SingleThread extends Thread {
 
 	public void run() {
-		// System.out.println("hii thread 1");
+		 System.out.println("hii thread 1");
 		thread();
 	}
 
@@ -21,33 +21,36 @@ public class SingleThread extends Thread {
 		for (int i = a.length - 1; i >= 0; i--) {
 			System.out.println(a[i]);
 		}
+		notifyAll();
 	}
 
 	class Single extends Thread {
 
 		public void run() {
-			// System.out.println("hii thread 2");
+			System.out.println("hii thread 2");
 			for (int i = 0; i < 3; i++) {
 				kiran();
 			}
 		}
 
 		public synchronized void kiran() {
-//			try {
-//				wait();
-//			} catch (InterruptedException e) {
-//				
-//				e.printStackTrace();
-//			}
+		
 			System.out.println("starting of thread 2");
-
-			int[] a = { 24545, 33868, 28673, 46755, 675673 };
-			Arrays.sort(a);
-			System.out.println(Arrays.toString(a));
-
-			for (int i = a.length - 1; i >= 0; i--) {
-				System.out.println(a[i]);
+			
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
 			}
+			notifyAll();
+//			int[] a = { 24545, 33868, 28673, 46755, 675673 };
+//			Arrays.sort(a);
+//			System.out.println(Arrays.toString(a));
+//
+//			for (int i = a.length - 1; i >= 0; i--) {
+//				System.out.println(a[i]);
+//			}
 
 		}
 	}
